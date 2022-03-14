@@ -247,6 +247,31 @@ class MarketOrderApi(MarketApi):
             return response_dict
         return 400
 
+    @outter
+    def orders_query_date(self, qu_dict):
+
+        dict_data = {
+            'orders_query': {'@xmlns': self.xmlns, '@shop_id': self.shop_id, '@partner_id': self.partner_id,
+                             '@token': self.token, '@results_count': 20,
+                             'paging': qu_dict['paging'],
+                             'states': {'state': qu_dict['state']},
+                             'date': {'@type': qu_dict['date-type'], 'min': qu_dict['min'], 'max': qu_dict['max']}
+                             }
+        }
+        if qu_dict['date-type'] == '':
+            dict_data['orders_query'].pop('date')
+        if qu_dict['state'] == 'ALL':
+            dict_data['orders_query'].pop('states')
+        dict_xml = xmltodict.unparse(dict_data, encoding='utf-8')
+        url = self.url + '/orders_query'
+        response = requests.post(url, data=dict_xml.encode('utf-8'), headers=self.headers)
+        print(response.text)
+        if response.status_code == 200:
+            of_dict = self.xml_to_dict(response.text)
+            return of_dict
+        return 400
+
+
 class MarketPricingApi(MarketApi):
         @outter
         def pricing_query(self, query_dict):
@@ -318,4 +343,8 @@ if __name__ == '__main__':
     # id = order.carriers_query()
     # print(id)
     # id = order.pricing_query({'sellers': 'all', 'product_reference': '0711719247159'})
+    # print(id)
+
+    # id = mark.offers_query(
+    #     {'results_count': '3', 'paging': '1', 'min': '2019-11-04T14:15:38+01:00', 'max': '2019-12-04T14:15:38+01:00'})
     # print(id)

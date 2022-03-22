@@ -313,10 +313,10 @@ class MarketPricingApi(MarketApi):
 
 if __name__ == '__main__':
 
-    mark = MarketApi()
-    print(mark)
-    mark.authentication()
-    print(mark.authentication())
+    # mark = MarketApi()
+    # print(mark)
+    # mark.authentication()
+    # print(mark.authentication())
 
     # id = mark.offers_update({'product_reference': '5030917077418', 'offer_reference': 'B067-F0D-75E', 'price': '20', 'product_state': '11',
     #                           'quantity': '20', 'description': 'new item', 'showcase': '2'})
@@ -324,27 +324,27 @@ if __name__ == '__main__':
 
 
     # mark.offers_query()
-    mark.batch_query()
+    # mark.batch_query()
     # mark.delete_offer({'offer_reference': 'B76A-CD5-153'})
     # mark.batch_status('6A994213-CD41-42CF-DBC2-43E03A3E7E4A')
     # mark.offers_query_id('B76A-CD5-153')
     # id = mark.update_offer_price({'offer_reference': 'B067-F0D-75E','price': '33','quantity': '33',})
 
-    # marks = MarketOrderApi()
-    # marks.authentication()
+    marks = MarketOrderApi()
+    marks.authentication()
 
     # id = marks.orders_query({'paging': 1})
     # id = marks.orders_update({'order_id': '622A7874A4665', 'action': 'accept_order',
     #  'order_detail_action': 'Accepted','order_detail_id':1
     #  })
 
-    # order = MarketPricingApi()
-    # order.authentication()
-    # id = order.carriers_query()
+    order = MarketPricingApi()
+    order.authentication()
+    id = order.carriers_query()
     # print(id)
     # id = order.pricing_query({'sellers': 'all', 'product_reference': '0711719247159'})
     # print(id)
 
     # id = mark.offers_query(
-    #     {'results_count': '3', 'paging': '1', 'min': '2019-11-04T14:15:38+01:00', 'max': '2019-12-04T14:15:38+01:00'})
+    #     {'results_count': '3', 'paging': '1', 'min': '2022-01-04T14:15:38+01:00', 'max': '2022-03-04T14:15:38+01:00'})
     # print(id)
